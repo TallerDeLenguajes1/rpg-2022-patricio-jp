@@ -27,6 +27,6 @@ public class Personaje {
     }
 
     public override string ToString() {
-        return "\nTipo de personaje: " + this.datos.Tipo.ToString() + "\nNombre: " + this.datos.Nombre + "\nApodo: " + this.datos.Apodo + "\nFecha de nacimiento: " + this.datos.FechaDeNacimiento.Date.ToString() + "\nEdad: " + this.datos.Edad + "\n--- Stats ---\nVelocidad: " + this.caracteristicas.Velocidad + "\nDestreza: " + this.caracteristicas.Destreza + "\nFuerza: " + this.caracteristicas.Fuerza + "\nArmadura: " + this.caracteristicas.Armadura + "\nNivel: " + this.caracteristicas.Nivel;
+        return "\nTipo de personaje: " + this.datos.Tipo.ToString() + "\nNombre: " + this.datos.Nombre + "\nApodo: " + this.datos.Apodo + "\nFecha de nacimiento: " + this.datos.FechaDeNacimiento.ToShortDateString() + "\nEdad: " + this.datos.Edad + "\n--- Stats ---\nVelocidad: " + this.caracteristicas.Velocidad + "\nDestreza: " + this.caracteristicas.Destreza + "\nFuerza: " + this.caracteristicas.Fuerza + "\nArmadura: " + this.caracteristicas.Armadura + "\nNivel: " + this.caracteristicas.Nivel;
     }
 }

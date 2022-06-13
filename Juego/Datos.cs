@@ -16,11 +16,11 @@ public class Datos {
     private int salud;
 
     public Datos(TipoPersonaje tipo, string nombre, string apodo, DateTime fechaNac) {
-        this.tipo = tipo;
-        this.nombre = nombre;
-        this.apodo = apodo;
-        this.fechaDeNacimiento = fechaNac;
-        this.salud = 100;
+        this.Tipo = tipo;
+        this.Nombre = nombre;
+        this.Apodo = apodo;
+        this.FechaDeNacimiento = fechaNac;
+        this.Salud = 100;
     }
 
     public TipoPersonaje Tipo { get => tipo; set => tipo = value; }
