@@ -4,10 +4,8 @@ public class Personaje {
     private Datos datos;
     private Caracteristicas caracteristicas;
 
-    public Personaje(string nombre, string apodo, DateTime fechaNac) {
-        var tiposP = Enum.GetValues(typeof(TipoPersonaje));
-        TipoPersonaje tipoPj = (TipoPersonaje) tiposP.GetValue(rnd.Next(tiposP.Length));
-        this.datos = new Datos(tipoPj, nombre, apodo, fechaNac);
+    public Personaje() {
+        this.datos = new Datos();
         this.caracteristicas = new Caracteristicas();
     }
 
@@ -15,18 +13,27 @@ public class Personaje {
     public Caracteristicas Caracteristicas { get => caracteristicas; set => caracteristicas = value; }
 
     public void Atacar(Personaje objetivo) {
-        float PoderDisparo = caracteristicas.Fuerza * caracteristicas.Destreza * caracteristicas.Nivel;
-        float EfectividadAtaque = rnd.Next(1, 100) / 100;
+        Console.Write("\n({0}) {1} ataca a ({2}) {3}\n", this.Datos.Tipo.ToString(), this.Datos.Nombre, objetivo.Datos.Tipo.ToString(), objetivo.Datos.Nombre);
+        float PoderDisparo = Caracteristicas.Fuerza * Caracteristicas.Destreza * Caracteristicas.Nivel;
+        float EfectividadAtaque = rnd.Next(1, 101);
         float ValorAtaque = PoderDisparo * EfectividadAtaque;
 
-        float PoderDefensa = objetivo.caracteristicas.Velocidad * objetivo.caracteristicas.Armadura;
+        float PoderDefensa = objetivo.Caracteristicas.Velocidad * objetivo.Caracteristicas.Armadura;
 
-        int DanioProvocado = (int)(ValorAtaque - PoderDefensa) / MDP * 100;
+        float DanioProvocado = (ValorAtaque - PoderDefensa) / MDP * 100;
+        if (DanioProvocado < 0) DanioProvocado = 0;
+        if (DanioProvocado > objetivo.Datos.Salud) DanioProvocado = objetivo.Datos.Salud;
 
-        objetivo.datos.Salud -= DanioProvocado;
+        objetivo.Datos.Salud -= DanioProvocado;
+        // Console.WriteLine("Poder de disparo: {0}", PoderDisparo);
+        // Console.WriteLine("Efectividad de ataque: {0}", EfectividadAtaque);
+        // Console.WriteLine("Valor de ataque: {0}", ValorAtaque);
+        // Console.WriteLine("Poder de defensa del objetivo: {0}", PoderDefensa);
+        Console.WriteLine("Daño causado: {0}", DanioProvocado);
+        Console.WriteLine("Salud restante de {0}: {1}", objetivo.Datos.Nombre, objetivo.Datos.Salud);
     }
 
     public override string ToString() {
-        return "\nTipo de personaje: " + this.datos.Tipo.ToString() + "\nNombre: " + this.datos.Nombre + "\nApodo: " + this.datos.Apodo + "\nFecha de nacimiento: " + this.datos.FechaDeNacimiento.ToShortDateString() + "\nEdad: " + this.datos.Edad + "\n--- Stats ---\nVelocidad: " + this.caracteristicas.Velocidad + "\nDestreza: " + this.caracteristicas.Destreza + "\nFuerza: " + this.caracteristicas.Fuerza + "\nArmadura: " + this.caracteristicas.Armadura + "\nNivel: " + this.caracteristicas.Nivel;
+        return "\nTipo de personaje: " + this.Datos.Tipo.ToString() + "\nNombre: " + this.Datos.Nombre + "\nApodo: " + this.Datos.Apodo + "\nFecha de nacimiento: " + this.Datos.FechaDeNacimiento.ToShortDateString() + "\nEdad: " + this.Datos.Edad + "\n--- Stats ---\nVelocidad: " + this.Caracteristicas.Velocidad + "\nDestreza: " + this.Caracteristicas.Destreza + "\nFuerza: " + this.Caracteristicas.Fuerza + "\nArmadura: " + this.Caracteristicas.Armadura + "\nNivel: " + this.Caracteristicas.Nivel + "\n";
     }
 }

@@ -13,10 +13,10 @@ public class Caracteristicas {
     public int Nivel { get => nivel; set => nivel = value; }
 
     public Caracteristicas() {
-        this.Velocidad = rnd.Next(1, 10);
-        this.Destreza = rnd.Next(1, 5);
-        this.Fuerza = rnd.Next(1, 10);
-        this.Armadura = rnd.Next(1, 10);
-        this.Nivel = rnd.Next(1, 10);
+        this.Velocidad = rnd.Next(1, 11);
+        this.Destreza = rnd.Next(1, 6);
+        this.Fuerza = rnd.Next(1, 11);
+        this.Armadura = rnd.Next(1, 11);
+        this.Nivel = rnd.Next(1, 11);
     }
 }
