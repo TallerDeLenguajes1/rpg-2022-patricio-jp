@@ -1,0 +1,74 @@
+[
+  {
+    "Datos": {
+      "Tipo": "DarkLord",
+      "Nombre": "xMaxi",
+      "Apodo": "Maxi",
+      "FechaDeNacimiento": "2002-05-27T00:00:00",
+      "Salud": 100,
+      "Edad": 20
+    },
+    "Caracteristicas": {
+      "Velocidad": 5,
+      "Destreza": 2,
+      "Fuerza": 10,
+      "Armadura": 3,
+      "Nivel": 9
+    },
+    "CantBatallas": 6
+  },
+  {
+    "Datos": {
+      "Tipo": "FairyElf",
+      "Nombre": "Snoop_Dogg",
+      "Apodo": "Snoop Dogg",
+      "FechaDeNacimiento": "2004-08-28T00:00:00",
+      "Salud": 100,
+      "Edad": 17
+    },
+    "Caracteristicas": {
+      "Velocidad": 6,
+      "Destreza": 4,
+      "Fuerza": 3,
+      "Armadura": 8,
+      "Nivel": 2
+    },
+    "CantBatallas": 0
+  },
+  {
+    "Datos": {
+      "Tipo": "SoulMaster",
+      "Nombre": "Snoop_Dogg",
+      "Apodo": "Snoop Dogg",
+      "FechaDeNacimiento": "2010-03-05T00:00:00",
+      "Salud": 100,
+      "Edad": 12
+    },
+    "Caracteristicas": {
+      "Velocidad": 9,
+      "Destreza": 2,
+      "Fuerza": 4,
+      "Armadura": 4,
+      "Nivel": 6
+    },
+    "CantBatallas": 0
+  },
+  {
+    "Datos": {
+      "Tipo": "MagicGladiator",
+      "Nombre": "NewBlade",
+      "Apodo": "Blade",
+      "FechaDeNacimiento": "1997-03-25T00:00:00",
+      "Salud": 100,
+      "Edad": 25
+    },
+    "Caracteristicas": {
+      "Velocidad": 8,
+      "Destreza": 3,
+      "Fuerza": 6,
+      "Armadura": 3,
+      "Nivel": 6
+    },
+    "CantBatallas": 0
+  }
+]
