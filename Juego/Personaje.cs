@@ -3,14 +3,17 @@ public class Personaje {
     private static Random rnd = new Random();
     private Datos datos;
     private Caracteristicas caracteristicas;
+    private int cantBatallas;
 
     public Personaje() {
         this.datos = new Datos();
         this.caracteristicas = new Caracteristicas();
+        this.cantBatallas = 0;
     }
 
     public Datos Datos { get => datos; set => datos = value; }
     public Caracteristicas Caracteristicas { get => caracteristicas; set => caracteristicas = value; }
+    public int CantBatallas { get => cantBatallas; set => cantBatallas = value; }
 
     public void Atacar(Personaje objetivo) {
         Console.Write("\n({0}) {1} ataca a ({2}) {3}\n", this.Datos.Tipo.ToString(), this.Datos.Nombre, objetivo.Datos.Tipo.ToString(), objetivo.Datos.Nombre);
@@ -34,6 +37,6 @@ public class Personaje {
     }
 
     public override string ToString() {
-        return "\nTipo de personaje: " + this.Datos.Tipo.ToString() + "\nNombre: " + this.Datos.Nombre + "\nApodo: " + this.Datos.Apodo + "\nFecha de nacimiento: " + this.Datos.FechaDeNacimiento.ToShortDateString() + "\nEdad: " + this.Datos.Edad + "\n--- Stats ---\nVelocidad: " + this.Caracteristicas.Velocidad + "\nDestreza: " + this.Caracteristicas.Destreza + "\nFuerza: " + this.Caracteristicas.Fuerza + "\nArmadura: " + this.Caracteristicas.Armadura + "\nNivel: " + this.Caracteristicas.Nivel + "\n";
+        return "\nTipo de personaje: " + this.Datos.Tipo.ToString() + "\nNombre: " + this.Datos.Nombre + "\nApodo: " + this.Datos.Apodo + "\nFecha de nacimiento: " + this.Datos.FechaDeNacimiento.ToShortDateString() + "\nEdad: " + this.Datos.Edad + "\nCantidad de batallas: " + this.CantBatallas + "\n--- Stats ---\nVelocidad: " + this.Caracteristicas.Velocidad + "\nDestreza: " + this.Caracteristicas.Destreza + "\nFuerza: " + this.Caracteristicas.Fuerza + "\nArmadura: " + this.Caracteristicas.Armadura + "\nNivel: " + this.Caracteristicas.Nivel + "\n";
     }
 }

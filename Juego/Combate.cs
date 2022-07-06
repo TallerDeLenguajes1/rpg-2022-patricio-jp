@@ -25,8 +25,10 @@ public class Combate {
         int cantAtaques = 3;
         while (cantAtaques > 0 && this.Contrincante1.Datos.Salud > 0 && this.Contrincante2.Datos.Salud > 0) {
             Contrincante1.Atacar(Contrincante2);
+            Thread.Sleep(2000);
             if (Contrincante2.Datos.Salud <= 0) break; // Parar combate si el psje2 murió
             Contrincante2.Atacar(Contrincante1);
+            Thread.Sleep(2000);
             if (Contrincante2.Datos.Salud <= 0) break; // Parar combate si el psje1 murió
             cantAtaques--;
         }
