@@ -12,13 +12,17 @@ public class Combate {
     public Personaje Ganador { get => ganador; set => ganador = value; }
     public Personaje Perdedor { get => perdedor; set => perdedor = value; }
 
+    private Location lugarCombate;
+    public Location LugarCombate { get => lugarCombate; set => lugarCombate = value; }
+
     public Combate(Personaje pj1, Personaje pj2) {
         this.Contrincante1 = pj1;
         this.Contrincante2 = pj2;
+        this.LugarCombate = ServicioAPI.GetRandomLocation();
     }
 
     public override string ToString() {
-        return "(" + Contrincante1.Datos.Tipo.ToString() + ") " + Contrincante1.Datos.Nombre + " VS (" + Contrincante2.Datos.Tipo.ToString() + ") " + Contrincante2.Datos.Nombre;
+        return $"=== === === === === === === === ===\nLugar del combate: {LugarCombate.ToString()}\n({Contrincante1.Datos.Tipo.ToString()}) {Contrincante1.Datos.Nombre} VS ({Contrincante2.Datos.Tipo.ToString()}) {Contrincante2.Datos.Nombre}\n=== === === === === === === === ===";
     }
 
     public void IniciarCombate() {
@@ -55,6 +59,9 @@ public class Combate {
                 this.Perdedor = Contrincante1;
             }
         }
+
+        this.Ganador.Datos.Salud = 100; // Ganador del combate recuperará toda la salud
+        this.Ganador.CantBatallas++;
     }
 
 }

@@ -116,7 +116,6 @@ static void IniciarCombates(List<Personaje> personajes, ref int cantPersonajes, 
             }
             combates[i].IniciarCombate();
             personajes.Remove(combates[i].Perdedor);
-            combates[i].Ganador.CantBatallas++;
         }
 
         cantPersonajes = personajes.Count;
@@ -202,6 +201,7 @@ static void guardarPersonajesJson(List<Personaje> personajes) {
     using (StreamWriter sw = new StreamWriter("jugadores.json")) {
         var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
         sw.WriteLine(JsonSerializer.Serialize(personajes, jsonOptions));
+        sw.Close();
     }
     Thread.Sleep(1000);
     Console.WriteLine("Guardado exitoso.");

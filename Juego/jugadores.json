@@ -1,73 +1,145 @@
 [
   {
     "Datos": {
-      "Tipo": "DarkLord",
+      "Tipo": "DarkWizard",
       "Nombre": "xMaxi",
       "Apodo": "Maxi",
-      "FechaDeNacimiento": "2002-05-27T00:00:00",
+      "FechaDeNacimiento": "2011-11-15T00:00:00",
+      "Salud": 100,
+      "Edad": 10
+    },
+    "Caracteristicas": {
+      "Velocidad": 9,
+      "Destreza": 3,
+      "Fuerza": 8,
+      "Armadura": 6,
+      "Nivel": 10
+    },
+    "CantBatallas": 3
+  },
+  {
+    "Datos": {
+      "Tipo": "DarkLord",
+      "Nombre": "zion1994",
+      "Apodo": "Zion",
+      "FechaDeNacimiento": "2017-04-09T00:00:00",
+      "Salud": 100,
+      "Edad": 5
+    },
+    "Caracteristicas": {
+      "Velocidad": 2,
+      "Destreza": 1,
+      "Fuerza": 7,
+      "Armadura": 9,
+      "Nivel": 7
+    },
+    "CantBatallas": 0
+  },
+  {
+    "Datos": {
+      "Tipo": "BladeKnight",
+      "Nombre": "Snoop_Dogg",
+      "Apodo": "Snoop Dogg",
+      "FechaDeNacimiento": "1995-06-07T00:00:00",
+      "Salud": 100,
+      "Edad": 27
+    },
+    "Caracteristicas": {
+      "Velocidad": 3,
+      "Destreza": 1,
+      "Fuerza": 8,
+      "Armadura": 4,
+      "Nivel": 9
+    },
+    "CantBatallas": 0
+  },
+  {
+    "Datos": {
+      "Tipo": "MuseElf",
+      "Nombre": "RECLUSO_1",
+      "Apodo": "Recluso",
+      "FechaDeNacimiento": "2009-05-10T00:00:00",
+      "Salud": 100,
+      "Edad": 13
+    },
+    "Caracteristicas": {
+      "Velocidad": 1,
+      "Destreza": 2,
+      "Fuerza": 8,
+      "Armadura": 3,
+      "Nivel": 9
+    },
+    "CantBatallas": 0
+  },
+  {
+    "Datos": {
+      "Tipo": "DarkLord",
+      "Nombre": "-_TiTaN_-",
+      "Apodo": "Tit\u00E1n",
+      "FechaDeNacimiento": "2006-02-26T00:00:00",
+      "Salud": 100,
+      "Edad": 16
+    },
+    "Caracteristicas": {
+      "Velocidad": 7,
+      "Destreza": 4,
+      "Fuerza": 2,
+      "Armadura": 10,
+      "Nivel": 6
+    },
+    "CantBatallas": 0
+  },
+  {
+    "Datos": {
+      "Tipo": "BladeKnight",
+      "Nombre": "-Carnicer0",
+      "Apodo": "Carnicero",
+      "FechaDeNacimiento": "2021-03-13T00:00:00",
+      "Salud": 100,
+      "Edad": 1
+    },
+    "Caracteristicas": {
+      "Velocidad": 3,
+      "Destreza": 1,
+      "Fuerza": 9,
+      "Armadura": 4,
+      "Nivel": 1
+    },
+    "CantBatallas": 0
+  },
+  {
+    "Datos": {
+      "Tipo": "MuseElf",
+      "Nombre": "-Carnicer0",
+      "Apodo": "Carnicero",
+      "FechaDeNacimiento": "2002-03-14T00:00:00",
       "Salud": 100,
       "Edad": 20
     },
     "Caracteristicas": {
-      "Velocidad": 5,
+      "Velocidad": 7,
       "Destreza": 2,
       "Fuerza": 10,
-      "Armadura": 3,
-      "Nivel": 9
-    },
-    "CantBatallas": 6
-  },
-  {
-    "Datos": {
-      "Tipo": "FairyElf",
-      "Nombre": "Snoop_Dogg",
-      "Apodo": "Snoop Dogg",
-      "FechaDeNacimiento": "2004-08-28T00:00:00",
-      "Salud": 100,
-      "Edad": 17
-    },
-    "Caracteristicas": {
-      "Velocidad": 6,
-      "Destreza": 4,
-      "Fuerza": 3,
       "Armadura": 8,
-      "Nivel": 2
+      "Nivel": 5
     },
     "CantBatallas": 0
   },
   {
     "Datos": {
       "Tipo": "SoulMaster",
-      "Nombre": "Snoop_Dogg",
-      "Apodo": "Snoop Dogg",
-      "FechaDeNacimiento": "2010-03-05T00:00:00",
+      "Nombre": "Rydog",
+      "Apodo": "Rydog",
+      "FechaDeNacimiento": "2002-08-16T00:00:00",
       "Salud": 100,
-      "Edad": 12
+      "Edad": 19
     },
     "Caracteristicas": {
-      "Velocidad": 9,
-      "Destreza": 2,
-      "Fuerza": 4,
-      "Armadura": 4,
-      "Nivel": 6
-    },
-    "CantBatallas": 0
-  },
-  {
-    "Datos": {
-      "Tipo": "MagicGladiator",
-      "Nombre": "NewBlade",
-      "Apodo": "Blade",
-      "FechaDeNacimiento": "1997-03-25T00:00:00",
-      "Salud": 100,
-      "Edad": 25
-    },
-    "Caracteristicas": {
-      "Velocidad": 8,
+      "Velocidad": 2,
       "Destreza": 3,
       "Fuerza": 6,
       "Armadura": 3,
-      "Nivel": 6
+      "Nivel": 10
     },
     "CantBatallas": 0
   }
