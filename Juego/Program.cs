@@ -7,13 +7,12 @@ Console.WriteLine("======================================");
 // Random rnd = new Random();
 
 List<Personaje> personajes = new List<Personaje>();
-int cantPersonajes = personajes.Count;
 List<Combate> combates = new List<Combate>();
-int cantCombates = 0;
 
 bool seguir = true;
 Thread.Sleep(2000);
 do {
+    int cantPersonajes = personajes.Count;
     Console.Clear();
     Console.WriteLine("====== Combates Mu - Menú principal ======");
     Console.WriteLine($"Personajes listos para combatir: {cantPersonajes}");
@@ -46,7 +45,7 @@ do {
             break;
         case ConsoleKey.D5:
             Console.Clear();
-            IniciarCombates(personajes, ref cantPersonajes, ref combates, ref cantCombates);
+            IniciarCombates(personajes, ref combates);
             break;
         case ConsoleKey.D6:
             Console.Clear();
@@ -63,7 +62,7 @@ Console.ReadKey();
 // End
 
 static void cargarPersonajes(List<Personaje> listaPersonajes) {
-    Console.Write("\nIngrese la cantidad de personajes que habrá: ");
+    Console.Write("\nIngrese la cantidad de personajes que desea añadir: ");
     string entrada = Console.ReadLine();
     int cantPsjes = 0;
     while (!Int32.TryParse(entrada, out cantPsjes) && cantPsjes < 2) {
@@ -71,8 +70,22 @@ static void cargarPersonajes(List<Personaje> listaPersonajes) {
         entrada = Console.ReadLine();
     }
     for (int i = 1; i <= cantPsjes; i++) {
-        listaPersonajes.Add(new Personaje());
+        Personaje personajeNuevo = new Personaje();
+        if (File.Exists("ganadores.csv")) {
+            List<string> ganadores = File.ReadAllLines("ganadores.csv").Where(arg => !string.IsNullOrWhiteSpace(arg)).ToList();
+
+            string datosPsjeExistente = ganadores.Find(g => g.Split(";")[0].Equals(personajeNuevo.Datos.Tipo.ToString()) && g.Split(";")[1].Equals(personajeNuevo.Datos.Nombre));
+            if (datosPsjeExistente != null) {
+                string cantBatallasPrevias = datosPsjeExistente.Split(";")[2];
+                int cantBat = Int32.Parse(cantBatallasPrevias);
+                personajeNuevo.CantBatallas = cantBat;
+            }
+        }
+        listaPersonajes.Add(personajeNuevo);
     }
+
+
+
     using (StreamWriter sw = new StreamWriter("jugadores.json")) {
         var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
         sw.WriteLine(JsonSerializer.Serialize(listaPersonajes, jsonOptions));
@@ -100,54 +113,60 @@ static void mostrarPersonajes(List<Personaje> personajes) {
     Console.ReadKey();
 }
 
-static void IniciarCombates(List<Personaje> personajes, ref int cantPersonajes, ref List<Combate> combates, ref int cantCombates) {
-    while (cantPersonajes > 1) {
-        for (int i = 0, j = 0; i < cantPersonajes - 1; i += 2) {
-            combates.Add(new Combate(personajes[i], personajes[i + 1]));
-            cantCombates++;
-            j++;
-        }
-
-        for (int i = 0; i < cantCombates; i++) {
-            if (cantPersonajes == 2) {
-                Console.WriteLine("\n[FINAL]: " + combates[i].ToString());
-            } else {
-                Console.WriteLine("\n" + combates[i].ToString());
+static void IniciarCombates(List<Personaje> personajes, ref List<Combate> combates) {
+    int cantCombates = 0;
+    if (personajes.Count > 0) {
+        while (personajes.Count > 1) {
+            for (int i = 0, j = 0; i < personajes.Count - 1; i += 2) {
+                combates.Add(new Combate(personajes[i], personajes[i + 1]));
+                cantCombates++;
+                j++;
             }
-            combates[i].IniciarCombate();
-            personajes.Remove(combates[i].Perdedor);
+
+            for (int i = 0; i < cantCombates; i++) {
+                if (personajes.Count == 2) {
+                    Console.WriteLine("\n[FINAL]: " + combates[i].ToString());
+                } else {
+                    Console.WriteLine("\n" + combates[i].ToString());
+                }
+                combates[i].IniciarCombate();
+                personajes.Remove(combates[i].Perdedor);
+            }
+
+            combates = new List<Combate>();
+            cantCombates = 0;
         }
 
-        cantPersonajes = personajes.Count;
-        combates = new List<Combate>();
-        cantCombates = 0;
-    }
+        if (!File.Exists("ganadores.csv")) File.Create("ganadores.csv").Close();
 
-    if (!File.Exists("ganadores.csv")) File.Create("ganadores.csv").Close();
+        List<string> ganadores = File.ReadAllLines("ganadores.csv").Where(arg => !string.IsNullOrWhiteSpace(arg)).ToList();
 
-    List<string> ganadores = File.ReadAllLines("ganadores.csv").Where(arg => !string.IsNullOrWhiteSpace(arg)).ToList();
+        //string datosPsjeExistente = ganadores.Find(g => g.Split(";")[0].Equals(personajes[0].Datos.Tipo.ToString()) && g.Split(";")[1].Equals(personajes[0].Datos.Nombre));
+        //int cantBat;
+        //if (datosPsjeExistente != null) {
+        //    string cantBatallasPrevias = datosPsjeExistente.Split(";")[2];
+        //    cantBat = Int32.Parse(cantBatallasPrevias);
+        //} else {
+        //    cantBat = 0;
+        //}
 
-    string datosPsjeExistente = ganadores.Find(g => g.Split(";")[0].Equals(personajes[0].Datos.Tipo.ToString()) && g.Split(";")[1].Equals(personajes[0].Datos.Nombre));
-    int cantBat;
-    if (datosPsjeExistente != null) {
-        string cantBatallasPrevias = datosPsjeExistente.Split(";")[2];
-        cantBat = Int32.Parse(cantBatallasPrevias);
+        ganadores.RemoveAll(x => x.Split(";")[0].Equals(personajes[0].Datos.Tipo.ToString()) && x.Split(";")[1].Equals(personajes[0].Datos.Nombre));
+
+        string persoanajeAGuardar = personajes[0].Datos.Tipo.ToString() + ";" + personajes[0].Datos.Nombre + ";" + (personajes[0].CantBatallas);
+
+        ganadores.Add(persoanajeAGuardar);
+        File.WriteAllLines("ganadores.csv", ganadores);
+
+        //personajes[0].CantBatallas += cantBat;
+        Console.WriteLine("\n=====================");
+        Console.WriteLine("====== Ganador ======");
+        Console.WriteLine("=====================");
+        Console.WriteLine(personajes[0].ToString());
+
     } else {
-        cantBat = 0;
+        Console.WriteLine("No existen personajes cargados para pelear.");
+        Console.WriteLine("Cargue los personajes desde un archivo .json o genere personajes aleatorios.");
     }
-
-    ganadores.RemoveAll(x => x.Split(";")[0].Equals(personajes[0].Datos.Tipo.ToString()) && x.Split(";")[1].Equals(personajes[0].Datos.Nombre));
-
-    string persoanajeAGuardar = personajes[0].Datos.Tipo.ToString() + ";" + personajes[0].Datos.Nombre + ";" + (personajes[0].CantBatallas + cantBat);
-
-    ganadores.Add(persoanajeAGuardar);
-    File.WriteAllLines("ganadores.csv", ganadores);
-
-    personajes[0].CantBatallas += cantBat;
-    Console.WriteLine("\n=====================");
-    Console.WriteLine("====== Ganador ======");
-    Console.WriteLine("=====================");
-    Console.WriteLine(personajes[0].ToString());
     Console.WriteLine("\nPresione cualquier tecla para continuar...");
     Console.ReadKey();
 }
